@@ -6,6 +6,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
@@ -21,10 +22,5 @@ RUN mkdir -p data logs pretrained
 # Expose Streamlit port
 EXPOSE 8501
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s \
-  CMD curl -f http://localhost:8501/_stcore/health || exit 1
-
-# Start both monitor and Streamlit
-CMD python real_time_monitor.py & streamlit run streamlit_dashboard.py --server.port=${PORT:-8501} --server.address=0.0.0.0
-
+# Start monitor in background + Streamlit
+CMD python real_time_monitor.py & streamlit run streamlit_dashboard.py --server.port=${PORT:-8501} --server.address=0.0.0.0 --server.headless=true
