@@ -1,0 +1,53 @@
+# Hybrid Betting System - Real-Time Configuration
+
+# API Keys (ZMIEŃ NA SWOJE!)
+api_keys:
+  football_data_org: "232463ea3fe54b2b8a77e7f13653ee77"
+  telegram_bot_token: "8596033955:AAGV3cTf8iah5sPWYZgYq_K6H8cGp6vA2jc"
+  telegram_chat_id: "-1003240554469"
+
+# Leagues to monitor
+leagues:
+  PL: {id: 2021, name: "Premier League"}
+  PD: {id: 2014, name: "La Liga"}
+  SA: {id: 2019, name: "Serie A"}
+  BL1: {id: 2002, name: "Bundesliga"}
+  FL1: {id: 2015, name: "Ligue 1"}
+
+# Prediction thresholds
+thresholds:
+  over25_min_probability: 0.65
+  btts_min_probability: 0.60
+  min_confidence: "Medium"
+  min_edge: 0.05
+
+# Real-time monitoring
+monitoring:
+  scan_interval_seconds: 300
+  look_ahead_days: 3
+  rate_limit_delay: 8.0
+
+# Model settings
+model:
+  ensemble_weights: [0.4, 0.35, 0.25]
+  calibration_method: "platt"
+  bootstrap_samples: 100
+  auto_retrain_threshold: 0.60
+
+# Database
+database:
+  path: "data/predictions.db"
+  backup_interval_hours: 24
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/system.log"
+  max_bytes: 10485760
+  backup_count: 5
+
+# UI
+streamlit:
+  port: 8501
+  refresh_seconds: 30
+  theme: "dark"
