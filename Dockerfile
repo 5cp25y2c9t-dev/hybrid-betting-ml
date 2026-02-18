@@ -24,3 +24,5 @@ EXPOSE 8501
 
 # Start monitor in background + Streamlit
 CMD python real_time_monitor.py & streamlit run streamlit_dashboard.py --server.port=${PORT:-8501} --server.address=0.0.0.0 --server.headless=true
+
+# Force rebuild - Railway cache fix
