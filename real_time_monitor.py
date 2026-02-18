@@ -11,13 +11,11 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import yaml
+import numpy as np
 
-# Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent))
-
-from models.feature_engineering import FeatureEngineer
-from models.hybrid_predictor import HybridPredictor
-from core.database import Database
+from feature_engineering import FeatureEngineer
+from hybrid_predictor import HybridPredictor
+from database import Database
 
 logging.basicConfig(
     level=logging.INFO,
@@ -184,7 +182,6 @@ class RealTimeMonitor:
         )
 
         # Convert to numpy array (36 features)
-        import numpy as np
         feature_vector = np.array([list(features_dict.values())])
 
         # Predict Over 2.5
