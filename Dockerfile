@@ -26,4 +26,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s \
   CMD curl -f http://localhost:8501/_stcore/health || exit 1
 
 # Start both monitor and Streamlit
-CMD python core/real_time_monitor.py & streamlit run ui/streamlit_dashboard.py --server.port=8501 --server.address=0.0.0.0
+CMD python real_time_monitor.py & streamlit run streamlit_dashboard.py --server.port=${PORT:-8501} --server.address=0.0.0.0
+
